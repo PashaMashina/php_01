@@ -1,0 +1,15 @@
+{% extends "__layout.twig" %}
+{% import "buttons.twig" as button %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="myCol">
+                {% for item in ti_objects %}
+                    <img src= {{item.image}} class="rounded" style="width: 600px;"/>
+                    {{ button.btn(Картика, item.url_image, false) }}
+                    {{ button.btn(Описание, item.url_info, false) }}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

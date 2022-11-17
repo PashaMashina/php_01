@@ -1,0 +1,7 @@
+{% macro btn(name, url, type_on, type = "primary") %}
+    {% if type_on == true %}
+        <a href="{{url}}"  class="btn btn-{{ type }}">{{ name }}</a>
+    {% elseif type_on == false %}
+        <a href="{{url}}"  class="btn btn-link">{{ name }}</a>
+    {% endif %}
+{% endmacro %}

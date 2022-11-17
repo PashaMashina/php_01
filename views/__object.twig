@@ -1,0 +1,24 @@
+{% extends "__layout.twig" %}
+
+{% block content %}
+    <div class="container">
+        <h1>{{title}}</h1>
+    </div>
+
+    <div class="container p-3 border bg-light">   
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+            <a class="nav-link {{ is_image ? 'active' }}" href="{{page_image}}">
+                Картинка
+            </a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link {{ is_info ? 'active' }}" href="{{page_info}}">
+                Описание
+            </a>
+            </li>
+        </ul>
+    {% block objectContent %}
+    {% endblock %}
+    </div>
+{% endblock %}
