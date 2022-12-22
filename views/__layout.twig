@@ -20,11 +20,20 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav h2">
-                        {% for item in menu %}
+                        {% for item in paritys %}
                             <li class="nav-item">
-                                <a class="nav-link {{ title == item.title ? 'active' }}" href="{{item.url}}">{{item.microtitle}}</a>
+                                <a class="nav-link" href="/?type={{ item.title }}">{{item.title|title}}</a>
                             </li>
                         {% endfor %}
+                        <li class="nav-item">
+                            <a class="nav-link {{ is_search ? 'active' }}" href="/search">Поиск</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ is_add ? 'active' }}" href="/create">Добавить</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ is_add_type ? 'active' }}" href="/createtype">Типы</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -41,24 +50,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
     </script>
-
-    <style>
-        .myCol {
-            justify-content: center;
-            align-items: center;
-            display: flex;
-            flex-direction: column;
-            margin: 0.5em;
-            padding: 0.5em;
-            height: 216px;
-            flex-basis: 216px;
-            border-color: rgb(0, 0, 0);
-        }
-        .myCol.myCol-auto
-        {
-            flex: 0 0 auto;
-            width: auto;
-        }
-    </style>
 </body>
 </html>

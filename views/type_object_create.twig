@@ -1,0 +1,40 @@
+{% extends "__layout.twig" %}
+{% import "buttons.twig" as button %}
+
+{% block content %}
+    <div class="container">
+        <h1>Добавление типа</h1>
+        <hr>
+
+        {% if message %}
+        <div class="alert alert-info">
+            {{ message }}
+        </div>
+        {% endif %}
+
+        <form action="" enctype="multipart/form-data" method="POST" class="row g-3">
+            <div class="col-4">
+                <label class="form-label">Название</label>
+                <input type="text" class="form-control" name="title">
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label">Картинка</label>
+                <input class="form-control" type="file" name="image">
+            </div>
+            <div class="col-12 text-end">
+                <button type="submit" class="btn btn-primary">Добавить</button>
+            </div>
+        </form>
+
+        <div class="row justify-content-center mt-5">
+            {% for item in types_objects %}
+                <div class="col-12 col-md-6 col-xl-3 d-flex flex-column border rounded align-items-center p-3">
+                    
+                    <img src= {{item.image}} class="rounded" style="max-width: 100%; aspect-ratio: 1/1; object-fit: cover"/>
+                    {{ button.btn(item.title, "/", true) }}
+                </div>  
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

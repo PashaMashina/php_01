@@ -1,34 +1,21 @@
 <?php
-require_once "TwigBaseController.php";
+require_once "BaseTiTwigController.php";
 
-class MainController extends TwigBaseController {
+class MainController extends BaseTiTwigController {
     public $template = "main.twig";
     public $title = "Главная";
-    public $main_menu = [
-                [
-                    "title" => "TI10",
-                    "url_title" => "/ti10",
-                    "title_image" => "Картина",
-                    "url_image" => "/ti10/image",
-                    "title_info" => "Описание",
-                    "url_info" => "/ti10/info",
-                ],
-                [
-                    "title" => "TI11",
-                    "url_title" => "/ti11",
-                    "title_image" => "Картина",
-                    "url_image" => "/ti11/image",
-                    "title_info" => "Описание",
-                    "url_info" => "/ti11/info",
-                ]
-            ];
+    
     public function getContext() : array
     {
         $context = parent::getContext(); 
 
-        $context['main_menu'] = $this->main_menu;
-
-        $query = $this->pdo->query("SELECT * FROM ti_objects");
+        if(isset($_GET['type'])){
+            $query = $this->pdo->prepare("SELECT * FROM ti_objects WHERE parity = :type");
+            $query->bindValue("type", $_GET['type']);
+            $query->execute();
+        }else{
+            $query = $this->pdo->query("SELECT * FROM ti_objects");
+        }
 
         $context['ti_objects'] = $query->fetchAll();
          

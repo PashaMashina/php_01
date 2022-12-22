@@ -1,0 +1,37 @@
+{% extends "__layout.twig" %}
+
+{% block content %}
+<div class="container">
+    <form class="row gy-2 gx-3 align-items-center mb-4">
+        <div class="col">
+        <label for="autoSizingSelectType" class="form-label">Тип</label>
+        <select class="form-select" id="autoSizingSelectType" name="type">
+            <option value="">Все</option>
+            <option value="чётный">Чётные</option>
+            <option value="нечётный">Нечётные</option>
+        </select>
+        </div>
+
+        <div class="col">
+        <label for="autoSizingInputName" class="form-label">Название</label>
+        <input type="text" name="title" class="form-control" id="autoSizingInputName" placeholder="">
+        </div>
+
+        <div class="col">
+            <label for="autoSizingInputInfo" class="form-label">Описание</label>
+            <input type="text" name="info" class="form-control" id="autoSizingInputInfo" placeholder="">
+            </div>
+
+        <div class="col align-self-end">
+        <button type="submit" class="btn btn-primary">Найти</button>
+        </div>
+    </form>
+ 
+    {% for item in objects %}
+        <ul class="list-group">
+            <a href="/ti-object/{{item.id}}" class="list-group-item list-group-item-action link-primary">{{item.title}}</a>
+        </ul>
+    {% endfor %}
+
+</div> 
+{% endblock %}

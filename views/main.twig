@@ -2,14 +2,34 @@
 {% import "buttons.twig" as button %}
 {% block content %}
     <div class="container">
-        <div class="row">
-            <div class="myCol">
-                {% for item in ti_objects %}
-                    <img src= {{item.image}} class="rounded" style="width: 600px;"/>
-                    {{ button.btn(Картика, item.url_image, false) }}
-                    {{ button.btn(Описание, item.url_info, false) }}
-                {% endfor %}
-            </div>
+        <div class="row justify-content-center">
+            {% for item in ti_objects %}
+                <div class="col-12 col-md-6 col-xl-3 d-flex flex-column border rounded align-items-center p-3 position-relative">
+                    <div class="position-absolute" style="right: 4px; top: 4px">
+                        <form action="/ti-object/{{ item.id }}/delete" method="POST">
+                            <button type= "submit" class="btn btn-danger">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="position-absolute" style="right: 44px; top: 4px">
+                        <form action="/ti-object/{{ item.id }}/edit" method="POST">
+                            <button type= "submit" class="btn btn-primary">
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                    <a href="/ti-object/{{item.id}}?show=image"><img src= {{item.image}} class="rounded" style="max-width: 100%; aspect-ratio: 1/1; object-fit: cover"/></a>
+                    
+                    {{ button.btn(item.title, "/ti-object/" ~ item.id ~ "", true) }}
+
+                    <div class="row-auto">
+                        {{ button.btn("Картинка", "/ti-object/"~ item.id ~"?show=image", false) }}
+                        {{ button.btn("Описание", "/ti-object/"~ item.id ~"?show=info", false) }}
+                    </div>
+                </div>  
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
